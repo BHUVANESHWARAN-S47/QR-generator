@@ -14,7 +14,10 @@ from werkzeug.utils import secure_filename
 
 
 BASE_DIR = Path(__file__).resolve().parent
-GENERATED_DIR = BASE_DIR / "generated_qr"
+storage_dir = os.environ.get("QR_STORAGE_DIR")
+GENERATED_DIR = Path(storage_dir) if storage_dir else (
+    Path("/tmp/qr-generated") if os.environ.get("VERCEL") else BASE_DIR / "generated_qr"
+)
 GENERATED_DIR.mkdir(exist_ok=True)
 
 app = Flask(__name__)

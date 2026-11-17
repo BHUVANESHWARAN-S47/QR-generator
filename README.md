@@ -35,6 +35,20 @@ The application listens on the platform-provided `PORT` environment variable
 and falls back to port `5000` for local use. Set the build command to
 `pip install -r requirements.txt` and the start command to `gunicorn app:app`.
 
+### Vercel
+
+1. Sign in at [vercel.com](https://vercel.com) and choose **Add New Project**.
+2. Import `BHUVANESHWARAN-S47/QR-generator` from GitHub.
+3. Keep the framework preset as **Other**. Vercel detects `app.py` and
+   `requirements.txt` automatically.
+4. Deploy the project. No build command or environment variables are required.
+
+The included `vercel.json` configures the Python function timeout. Vercel's
+serverless filesystem is temporary, so generated PNGs are stored in `/tmp` on
+Vercel and should be downloaded immediately. For permanent file storage, use a
+storage service in a future enhancement; local development continues to use
+`generated_qr/`.
+
 ## Project structure
 
 ```text
