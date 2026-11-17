@@ -57,8 +57,8 @@ qr-code-generator/
 ├── requirements.txt
 ├── README.md
 ├── templates/index.html
-├── static/css/style.css
-├── static/js/script.js
+├── public/css/style.css
+├── public/js/script.js
 └── generated_qr/.gitkeep
 ```
 

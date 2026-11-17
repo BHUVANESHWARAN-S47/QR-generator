@@ -54,6 +54,16 @@ def home():
     return render_template("index.html")
 
 
+@app.get("/css/<path:filename>")
+def stylesheet(filename: str):
+    return send_from_directory(BASE_DIR / "public" / "css", filename)
+
+
+@app.get("/js/<path:filename>")
+def javascript(filename: str):
+    return send_from_directory(BASE_DIR / "public" / "js", filename)
+
+
 @app.post("/generate")
 def generate():
     payload = request.get_json(silent=True) or request.form
