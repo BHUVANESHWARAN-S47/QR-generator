@@ -22,6 +22,19 @@ Open [http://127.0.0.1:5000](http://127.0.0.1:5000) in a browser.
 
 OpenCV (`opencv-python-headless`) and NumPy are included only for the QR image scanning module. All QR generation and decoding happen locally.
 
+## Deployment
+
+The repository includes a `Procfile` for any hosting platform that supports
+Gunicorn (such as Render, Railway, or a Linux server):
+
+```text
+web: gunicorn app:app
+```
+
+The application listens on the platform-provided `PORT` environment variable
+and falls back to port `5000` for local use. Set the build command to
+`pip install -r requirements.txt` and the start command to `gunicorn app:app`.
+
 ## Project structure
 
 ```text
