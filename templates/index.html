@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A lightweight Python-powered QR code generator.">
+  <title>QR Generator | Python Powered</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <div class="eyebrow"><span class="status-dot"></span> PYTHON POWERED QR GENERATOR</div>
+      <h1>QR <span>GENERATOR</span></h1>
+      <p>Transform your information into scannable QR codes.</p>
+    </header>
+
+    <section class="card generator-card">
+      <div class="section-heading"><span class="step">01</span><div><h2>Enter your data</h2><p>URLs, notes, contacts, Wi-Fi details and more.</p></div></div>
+      <label for="data-input">Information to encode</label>
+      <textarea id="data-input" maxlength="2953" placeholder="https://example.com or any text..." spellcheck="false"></textarea>
+      <div class="field-meta"><span id="char-count">0 / 2953</span><button type="button" class="text-button" id="clear-input">Clear input</button></div>
+
+      <div class="section-heading settings-heading"><span class="step">02</span><div><h2>Customize</h2><p>Choose your QR code style.</p></div></div>
+      <div class="settings-grid">
+        <label>QR size <select id="size"><option value="6">Small</option><option value="10" selected>Medium</option><option value="14">Large</option><option value="18">Extra large</option></select></label>
+        <label>Error correction <select id="correction"><option value="L">L — Low</option><option value="M" selected>M — Medium</option><option value="Q">Q — Quartile</option><option value="H">H — High</option></select></label>
+        <label>Foreground <span class="color-control"><input id="foreground" type="color" value="#000000"><code id="foreground-value">#000000</code></span></label>
+        <label>Background <span class="color-control"><input id="background" type="color" value="#ffffff"><code id="background-value">#ffffff</code></span></label>
+      </div>
+      <button type="button" class="primary-button" id="generate-button"><span class="button-label">Generate QR code</span><span class="loader" hidden></span><span class="arrow">→</span></button>
+      <div id="generation-message" class="message" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="card preview-card" id="preview-section" hidden>
+      <div class="section-heading"><span class="step">03</span><div><h2>Your QR code</h2><p>Ready to scan or save as a PNG.</p></div></div>
+      <div class="qr-preview"><img id="qr-image" alt="Generated QR code"></div>
+      <div class="preview-details"><div><span>ENCODED DATA</span><strong id="preview-data"></strong></div><div><span>CORRECTION</span><strong id="preview-correction"></strong></div></div>
+      <div class="preview-actions"><a class="primary-button download-button" id="download-button" href="#">Download PNG <span>↓</span></a><button type="button" class="secondary-button" id="generate-again">Generate again</button></div>
+    </section>
+
+    <section class="card scanner-card">
+      <div class="section-heading"><span class="step">04</span><div><h2>Scan a QR code</h2><p>Upload an existing QR image to read its information.</p></div></div>
+      <form id="scan-form">
+        <label class="upload-box" for="qr-upload"><span class="upload-icon">↑</span><strong>Choose a QR image</strong><small>PNG, JPG or JPEG · Max 5 MB</small><input id="qr-upload" name="qr_image" type="file" accept="image/png,image/jpeg,image/jpg" required></label>
+        <button type="submit" class="secondary-button scan-button">Decode image <span>→</span></button>
+      </form>
+      <div id="scan-message" class="message" role="status" aria-live="polite"></div>
+      <div class="decoded-result" id="decoded-result" hidden><span>DECODED INFORMATION</span><p id="decoded-data"></p></div>
+    </section>
+
+    <footer><span>STATIC QR · LOCAL PROCESSING</span><span>BUILT WITH PYTHON + FLASK</span></footer>
+  </main>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
